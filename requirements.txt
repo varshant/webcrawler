@@ -1,0 +1,6 @@
+scrapy
+pandas
+requests
+beautifulsoup4
+aiohttp
+selenium  # Optional for JavaScript-heavy sites

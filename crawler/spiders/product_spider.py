@@ -12,6 +12,7 @@ class ProductSpider(scrapy.Spider):
         self.visited_urls = set()
 
     def parse(self, response):
+        """Parse the website and extract product URLs"""
         for link in response.css("a::attr(href)").getall():
             absolute_url = response.urljoin(link)
 
@@ -19,7 +20,9 @@ class ProductSpider(scrapy.Spider):
                 continue
             self.visited_urls.add(absolute_url)
 
+            # Check if the URL matches product patterns
             if any(re.search(pattern, absolute_url) for pattern in self.product_patterns):
                 yield {"domain": response.url.split('/')[2], "product_url": absolute_url}
             else:
                 yield scrapy.Request(url=absolute_url, callback=self.parse)
+

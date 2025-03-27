@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Scrapy Spider",
+            "type": "python",
+            "request": "launch",
+            "module": "scrapy",
+            "args": [
+                "runspider", "crawler/spiders/product_spider.py",
+                "-a", "domains=$(paste -s -d, data/domains.txt)",
+                "-o", "data/output.json"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Convert JSON to CSV",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/convert_to_csv.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}
